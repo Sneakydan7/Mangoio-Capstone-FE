@@ -28,11 +28,11 @@ export class TokenInterceptor implements HttpInterceptor {
         this.newReq = request.clone({
           headers: request.headers.set(
             'Authorization',
-            `Bearer ${authData.token}`
+            `Bearer ${authData.accessToken}`
           ),
         });
         console.log(authData);
-        console.log(authData.token);
+        console.log(authData.accessToken);
         return next.handle(this.newReq);
       })
     );

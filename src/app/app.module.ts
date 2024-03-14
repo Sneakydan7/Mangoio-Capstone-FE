@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthGuard } from './auth/guard/auth.guard';
 
 const routes: Route[] = [
   {
@@ -18,10 +21,25 @@ const routes: Route[] = [
     path: 'register',
     component: RegisterComponent,
   },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+  },
 ];
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    NavbarComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

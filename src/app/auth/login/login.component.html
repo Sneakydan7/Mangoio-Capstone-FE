@@ -1,1 +1,117 @@
-<p>login works!</p>
+<div class="bg container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-8 bg-custom mt-5 rounded-4 py-5">
+      <div class="row">
+        <h2 class="px-5 text-white text-center">
+          Welcome Back<span class="text-danger">!</span>
+        </h2>
+        <p class="m-0 text-secondary text-center fs-6">
+          Not a member?
+          <span
+            id="register-redirect"
+            class="pointer text-danger"
+            (click)="goRegister()"
+            >Create an account</span
+          >
+        </p>
+        <div class="col-12 d-flex justify-content-center">
+          <form
+            #loginForm="ngForm"
+            (ngSubmit)="login(loginForm)"
+            class="p-5 form-size w-100"
+          >
+            <div class="mb-3">
+              <label for="email" class="form-label text-danger">Email</label>
+              <div class="position-relative">
+                <div class="position-absolute end-0 mt-1 me-2 z-1">
+                  <i class="fa-solid fa-envelope text-danger"></i>
+                </div>
+                <input
+                  type="email"
+                  class="form-control border-0"
+                  id="email"
+                  name="email"
+                  ngModel
+                  email
+                  required
+                  [ngClass]="{
+                      'shake-horizontal':
+                      loginForm.controls['email'] && loginForm.controls['email'].errors?.['email'] && loginForm.controls['email'].touched
+                    }"
+                />
+                <div
+                  *ngIf="loginForm.controls['email'] && loginForm.controls['email'].errors?.['email'] && loginForm.controls['email'].touched"
+                >
+                  <span class="text-danger opacity-75"
+                    >Email is not valid!</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label text-danger"
+                >Password</label
+              >
+              <div class="position-relative">
+                <div class="position-absolute end-0 mt-1 me-2 z-1">
+                  <button
+                    type="button"
+                    class="btn p-0 m-0"
+                    (mousedown)="showPasswordOrNot()"
+                    [class.hide]="showPassword"
+                  >
+                    <i class="fa-solid fa-eye text-danger"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn p-0 m-0"
+                    (mouseup)="showPasswordOrNot()"
+                    [class.hide]="!showPassword"
+                  >
+                    <i class="fa-solid fa-eye-slash text-danger"></i>
+                  </button>
+                </div>
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  class="form-control border-0"
+                  id="password"
+                  name="password"
+                  [minlength]="8"
+                  ngModel
+                  required
+                  [ngClass]="{
+                    'shake-horizontal':
+                      loginForm.controls['password'] &&
+                      loginForm.controls['password'].touched &&
+                      loginForm.controls['password'].invalid
+                  }"
+                />
+                <div
+                  *ngIf="
+                    loginForm.controls['password'] &&
+                    loginForm.controls['password'].touched &&
+                    loginForm.controls['password'].invalid
+                  "
+                >
+                  <span class="text-danger opacity-75">
+                    La password deve essere di almeno 8 caratteri!
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button
+                type="submit"
+                [disabled]="loginForm.invalid"
+                class="btn btn-outline-danger px-5 fw-bold"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
