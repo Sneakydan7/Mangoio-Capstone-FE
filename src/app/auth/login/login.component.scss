@@ -1,0 +1,75 @@
+.bg {
+  height: calc(100vh - 72px);
+  background-color: #1f2125;
+}
+
+.bg-custom {
+  background-color: #1f2125;
+}
+
+.form-control {
+  color: white;
+  font-weight: 500;
+  background-color: #2e3137;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+#register-redirect {
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+}
+::placeholder {
+  color: #909090;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.form-size {
+  max-width: 600px;
+}
+h1 {
+  font-family: "Barlow Condensed";
+  font-weight: 700;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+h1:before {
+  content: url(../../../assets/images/brushtroke-removebg-preview.png);
+  position: absolute;
+  margin-top: -10px;
+  margin-left: -70px;
+  z-index: -1;
+
+  -webkit-animation: brush 0.3s backwards reverse;
+  -moz-animation: brush 0.3s backwards reverse;
+  -o-animation: brush 0.3s backwards reverse;
+  animation: brush 0.3s backwards reverse;
+
+  -webkit-mask: url(../../../assets/images/brushtroke-removebg-preview.png)
+    no-repeat 0 0;
+  mask: url(../../../assets/images/brushtroke-removebg-preview.png) no-repeat 0
+    0;
+}
+@keyframes brush {
+  0% {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+  100% {
+    -webkit-mask-position: 400px 0px;
+    mask-position: 400px 0px;
+  }
+}

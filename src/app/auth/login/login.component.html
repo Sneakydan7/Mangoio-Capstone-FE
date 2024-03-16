@@ -1,17 +1,15 @@
 <div class="bg container-fluid">
   <div class="row d-flex justify-content-center">
     <div class="col-12 col-md-8 bg-custom mt-5 rounded-4 py-5">
-      <div class="row">
-        <h2 class="px-5 text-white text-center">
-          Welcome Back<span class="text-danger">!</span>
-        </h2>
-        <p class="m-0 text-secondary text-center fs-6">
-          Not a member?
+      <div class="row text-center">
+        <h1 class="px-5">ENTRA <span class="text-danger">SUBITO!</span></h1>
+        <p class="m-0 text-secondary text-center fs-6 z-1">
+          Non hai un account?
           <span
             id="register-redirect"
-            class="pointer text-danger"
+            class="pointer text-danger z-1"
             (click)="goRegister()"
-            >Create an account</span
+            >Crealo qui</span
           >
         </p>
         <div class="col-12 d-flex justify-content-center">
@@ -21,7 +19,6 @@
             class="p-5 form-size w-100"
           >
             <div class="mb-3">
-              <label for="email" class="form-label text-danger">Email</label>
               <div class="position-relative">
                 <div class="position-absolute end-0 mt-1 me-2 z-1">
                   <i class="fa-solid fa-envelope text-danger"></i>
@@ -31,6 +28,7 @@
                   class="form-control border-0"
                   id="email"
                   name="email"
+                  placeholder="E-Mail"
                   ngModel
                   email
                   required
@@ -49,9 +47,6 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label text-danger"
-                >Password</label
-              >
               <div class="position-relative">
                 <div class="position-absolute end-0 mt-1 me-2 z-1">
                   <button
@@ -76,6 +71,7 @@
                   class="form-control border-0"
                   id="password"
                   name="password"
+                  placeholder="Password"
                   [minlength]="8"
                   ngModel
                   required

@@ -1,11 +1,9 @@
 <div class="bg container-fluid">
   <div class="row d-flex justify-content-center">
     <div class="col-12 col-md-8 bg-custom mt-5 rounded-4 py-5">
-      <div class="row">
-        <h2 class="px-5 text-white text-center">
-          MANGO<span class="text-danger">.IO</span>
-        </h2>
-        <p class="m-0 text-secondary text-center fs-6">
+      <div class="row text-center">
+        <h1>MANGHI SOLO <span class="text-danger">TU!</span></h1>
+        <p class="m-0 text-secondary text-center fs-6 z-1">
           Sei gia registrato?
           <span
             id="register-redirect"
@@ -21,7 +19,6 @@
             class="p-5 form-size w-100"
           >
             <div class="mb-3">
-              <label for="name" class="form-label text-danger">Username</label>
               <div class="position-relative">
                 <div class="position-absolute end-0 mt-1 me-2 z-1">
                   <i class="fa-solid fa-id-card-clip text-danger"></i>
@@ -29,6 +26,7 @@
                 <input
                   type="text"
                   name="username"
+                  placeholder="Username"
                   class="form-control border-0"
                   required
                   ngModel
@@ -36,7 +34,6 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="name" class="form-label text-danger">Nome</label>
               <div class="position-relative">
                 <div class="position-absolute end-0 mt-1 me-2 z-1">
                   <i class="fa-solid fa-address-card text-danger"></i>
@@ -44,6 +41,7 @@
                 <input
                   type="text"
                   name="name"
+                  placeholder="Nome"
                   class="form-control border-0"
                   required
                   ngModel
@@ -51,9 +49,6 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="surname" class="form-label text-danger"
-                >Cognome</label
-              >
               <div class="position-relative">
                 <div class="position-absolute end-0 mt-1 me-2 z-1">
                   <i class="fa-solid fa-address-card text-danger"></i>
@@ -61,6 +56,7 @@
                 <input
                   type="text"
                   name="surname"
+                  placeholder="Cognome"
                   class="form-control border-0"
                   required
                   ngModel
@@ -68,7 +64,6 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label text-danger">Email</label>
               <div class="position-relative">
                 <div class="position-absolute end-0 mt-1 me-2 z-1">
                   <i class="fa-solid fa-envelope text-danger"></i>
@@ -76,6 +71,7 @@
                 <input
                   type="email"
                   name="email"
+                  placeholder="E-Mail"
                   class="form-control border-0"
                   required
                   email
@@ -95,9 +91,6 @@
               </div>
             </div>
             <div class="mb-4">
-              <label for="password" class="form-label text-danger"
-                >Password</label
-              >
               <div class="position-relative">
                 <div class="position-absolute end-0 mt-1 me-2 z-1">
                   <button
@@ -121,6 +114,7 @@
                   [type]="showPassword ? 'text' : 'password'"
                   class="form-control border-0"
                   name="password"
+                  placeholder="Password"
                   [minlength]="8"
                   required
                   ngModel
