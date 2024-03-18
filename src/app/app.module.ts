@@ -11,6 +11,7 @@ import { TokenInterceptor } from './auth/token.interceptor';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './auth/guard/auth.guard';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Route[] = [
   {
@@ -27,8 +28,12 @@ const routes: Route[] = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'about',
+    component: AboutComponent,
+  },
+  {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: 'about',
   },
 ];
 
@@ -39,6 +44,7 @@ const routes: Route[] = [
     RegisterComponent,
     HomeComponent,
     NavbarComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
