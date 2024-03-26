@@ -12,6 +12,9 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { AboutComponent } from './components/about/about.component';
+import { TrackerComponent } from './components/tracker/tracker.component';
+import { MangaPageComponent } from './components/manga-page/manga-page.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Route[] = [
   {
@@ -25,6 +28,16 @@ const routes: Route[] = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'search/:query',
+    component: SearchComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'tracker',
+    component: TrackerComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -45,6 +58,9 @@ const routes: Route[] = [
     HomeComponent,
     NavbarComponent,
     AboutComponent,
+    TrackerComponent,
+    MangaPageComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

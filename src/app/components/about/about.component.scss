@@ -278,6 +278,11 @@ footer a:focus {
   font-style: italic;
   font-size: 100px;
 }
+
+.font-barlow {
+  font-family: "Barlow Condensed";
+  font-weight: 300;
+}
 .mango-color {
   color: #f1bf38;
   font-size: 100px;
@@ -297,17 +302,37 @@ footer a:focus {
     1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 .bg-mango {
-  background-color: #fff2bd;
+  background: #c55a82;
+  background: -webkit-linear-gradient(to right, #c55a82, #ffdf80);
+  background: linear-gradient(to right, #c55a82, #ffdf80);
 }
 
 .text-rainbow-animation {
-  background-image: linear-gradient(to right, red, orange, blue, red);
+  background-image: linear-gradient(
+    to right,
+    #c55a82,
+    #e29d81,
+    #65549e,
+    #ffdf80,
+    #c55a82
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: rainbow-animation 800s linear infinite;
+  animation: rainbow-animation 1600s linear infinite;
 }
 @keyframes rainbow-animation {
   to {
     background-position: 4500vh;
   }
+}
+
+.frosted-glass {
+  backdrop-filter: blur(20px);
+
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+.border-10px {
+  border-radius: 10px;
 }

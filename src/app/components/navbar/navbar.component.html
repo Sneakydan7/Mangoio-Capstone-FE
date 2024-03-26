@@ -34,6 +34,16 @@
         </li>
         <li class="nav-item">
           <a
+            class="nav-link active"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/tracker']"
+            *ngIf="userLoggedIn"
+            >La tua lista</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
             class="nav-link"
             href="#"
             *ngIf="!userLoggedIn"
@@ -60,22 +70,30 @@
             href="#"
             [routerLink]="['/about']"
             routerLinkActive="active"
+            *ngIf="!userLoggedIn"
             >Chi siamo</a
           >
         </li>
+        <form class="d-flex ps-5" role="search" *ngIf="userLoggedIn">
+          <input
+            class="form-control me-2 rounded-max searchbar"
+            type="search"
+            placeholder="Premi invio per cercare ..."
+            aria-label="Search"
+            [(ngModel)]="searchInput"
+            name="searchInput"
+            (keydown.enter)="search()"
+            style="font-size: 12px"
+          />
+        </form>
       </ul>
-      <form class="d-flex" role="search" *ngIf="userLoggedIn">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
       <div class="d-none d-md-flex" *ngIf="userLoggedIn">
-        <button class="btn btn-outline-danger h-100" (click)="logout()">
-          <i class="bi bi-box-arrow-right"></i>
+        <button
+          class="btn btn-danger h-100 rounded-max logout"
+          (click)="logout()"
+        >
+          <i class="fa-solid fa-power-off"></i>
         </button>
       </div>
     </div>

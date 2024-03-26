@@ -1,0 +1,43 @@
+<div class="calc-height">
+  <h1 class="font-logo text-light">
+    Risultati per <span class="text-danger">"{{ searchInput }}"</span>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="d-flex flex-wrap col-12">
+    <div *ngFor="let manga of searchedMangas">
+      <article class="card mt-4 ms-4">
+        <img
+          class="card__background"
+          src="{{ manga.imageUrl }}"
+          alt="Photo of
+                      Cartagena's cathedral at the background and some colonial style houses"
+          width="100%"
+          height="100%"
+        />
+        <div class="card__content | flow" style="width: 100%">
+          <div class="card__content--container | flow">
+            <h2 class="card__title text-light">{{ manga.title }}</h2>
+            <div class="card__description text-light">
+              <div>
+                CIAO
+                <i
+                  class="fa-solid fa-star fs-6 ms-2 text-rainbow-animation"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-around mt-1">
+            <button type="button" class="btn mango-color card__button col-6">
+              <i class="fa-solid fa-bookmark"></i>
+            </button>
+            <button type="button" class="btn btn-danger card__button col-3">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
