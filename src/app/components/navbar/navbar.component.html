@@ -61,7 +61,7 @@
             class="nav-link"
             [routerLink]="['/register']"
             routerLinkActive="active"
-            >Register</a
+            >Registrati</a
           >
         </li>
         <li class="nav-item">
@@ -78,7 +78,7 @@
           <input
             class="form-control me-2 rounded-max searchbar"
             type="search"
-            placeholder="Premi invio per cercare ..."
+            placeholder="Premi invio per cercare..."
             aria-label="Search"
             [(ngModel)]="searchInput"
             name="searchInput"
@@ -93,7 +93,10 @@
           class="btn btn-danger h-100 rounded-max logout"
           (click)="logout()"
         >
-          <i class="fa-solid fa-power-off"></i>
+          <i
+            class="fa-solid fa-right-from-bracket p-0 m-0"
+            style="font-size: 15px"
+          ></i>
         </button>
       </div>
     </div>

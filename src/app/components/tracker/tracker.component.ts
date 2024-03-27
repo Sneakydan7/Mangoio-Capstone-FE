@@ -2,6 +2,8 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { MymangaService } from 'src/app/services/mymanga.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { MangaVolume } from 'src/app/auth/interfaces/manga-volume';
+import { MymangaData } from 'src/app/auth/interfaces/mymanga-data';
 @Component({
   selector: 'app-tracker',
   templateUrl: './tracker.component.html',
@@ -9,26 +11,24 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TrackerComponent implements OnInit {
   myMangas!: any[];
+  myMangaReadVolumes!: any[];
   loggedUser!: any;
   displayMangaName!: string;
   displayMangaVolumes!: number;
   displayMangaImage!: string;
+  displayMangaId!: number;
   isMangaSelected: boolean = false;
 
-  imagePath: string = '../../../assets/images/PngItem_635378.png';
+  clickedVolumes: number[] = [];
 
-  audio!: HTMLAudioElement;
+  imagePath: string = '../../../assets/images/PngItem_635378.png';
 
   constructor(
     private myMangaService: MymangaService,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private router: Router
-  ) {
-    this.audio = new Audio(
-      '34T6PkrBW3jQjhYnpdxv8qMiiuXscEMoYasigAhYRms6DWnYCKZ6dDYujNHfBWDv6o1fL1SfJbCreRwiyG1i4iKbpBKxZiMLPzbW9vMBhRaew3nBCVS1eaGF1'
-    );
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getMe();
@@ -40,8 +40,21 @@ export class TrackerComponent implements OnInit {
     });
   }
 
+  getMyMangaReadVolumes(mangaId: number): any {
+    this.userService
+      .getMyReadVolumesForManga(mangaId)
+      .subscribe((response: any) => {
+        this.myMangaReadVolumes = response;
+        console.log(this.myMangaReadVolumes);
+      });
+  }
+
+  setMyMangaReadVolumes(mangaVol: MangaVolume) {
+    this.userService.setMyReadVolumesForManga(mangaVol).subscribe();
+  }
+
   getMyMangas(): void {
-    this.userService.getMyMangas().subscribe((response: any) => {
+    this.userService.getMyMangas().subscribe((response) => {
       this.myMangas = response;
     });
   }
@@ -62,6 +75,9 @@ export class TrackerComponent implements OnInit {
   clickedMangaImage(image: string): void {
     this.displayMangaImage = image;
   }
+  clickedMangaId(id: number): void {
+    this.displayMangaId = id;
+  }
 
   generateVolumeArray(): number[] {
     return Array.from(
@@ -70,8 +86,26 @@ export class TrackerComponent implements OnInit {
     );
   }
 
-  showSide() {
+  showSide(manga: MymangaData) {
+    this.clickedMangaId(manga.id);
+    this.clickedMangaImage(manga.imageUrl);
+    this.clickedMangaVolumes(manga.volumes);
+    this.clickedMangaName(manga.title);
+
     this.isMangaSelected = true;
+    this.clickedVolumes = [];
+
+    this.userService
+      .getMyReadVolumesForManga(manga.id)
+      .subscribe((response: any) => {
+        this.myMangaReadVolumes = response;
+        console.log(this.myMangaReadVolumes);
+        for (let i = 0; i < response.length; i++) {
+          const currentVol = response[i];
+          this.clickedVolumes.push(currentVol.volNumber);
+          console.log(currentVol);
+        }
+      });
   }
 
   hideSide() {
@@ -96,5 +130,10 @@ export class TrackerComponent implements OnInit {
       });
       container.appendChild(c);
     }
+  }
+
+  markVolumeAsRead(mangaId: number, volNumber: number): void {
+    this.clickedVolumes.push(volNumber);
+    this.setMyMangaReadVolumes({ mangaId, volNumber });
   }
 }

@@ -38,10 +38,7 @@
             <button
               type="button"
               class="btn mango-color card__button col-6"
-              (click)="clickedMangaName(manga.title)"
-              (click)="clickedMangaVolumes(manga.volumes)"
-              (click)="clickedMangaImage(manga.imageUrl)"
-              (click)="showSide()"
+              (click)="showSide(manga)"
             >
               <i class="fa-solid fa-bookmark"></i>
             </button>
@@ -85,11 +82,17 @@
           style="max-width: 70px"
         >
           <button
-            class="btn btn-dark rounded-0 coinup"
+            class="btn btn-dark rounded-0 coinup position-relative"
             type="button"
+            (click)="markVolumeAsRead(displayMangaId, i + 1)"
+            [id]="'volumeButton_' + (i + 1)"
             (click)="addCoin($event)"
+            [disabled]="clickedVolumes.includes(i + 1)"
           >
             Volume {{ i + 1 }}
+            <span *ngIf="clickedVolumes.includes(i + 1)" class="mask">
+              <i class="fa-solid fa-check"></i>
+            </span>
           </button>
         </div>
       </div>

@@ -30,10 +30,14 @@
           </div>
           <div class="row justify-content-around mt-1">
             <button type="button" class="btn mango-color card__button col-6">
-              <i class="fa-solid fa-bookmark"></i>
+              <i class="fa-solid fa-info"></i>
             </button>
-            <button type="button" class="btn btn-danger card__button col-3">
-              <i class="fa-solid fa-trash"></i>
+            <button
+              type="button"
+              class="btn btn-danger card__button col-3"
+              (click)="addMangaToList(manga.id)"
+            >
+              <i class="fa-solid fa-plus"></i>
             </button>
           </div>
         </div>

@@ -70,6 +70,7 @@ export class HomeComponent implements OnInit {
 
   addMangaToList(id: number): void {
     this.userService.addMangaToList(id).subscribe();
+    alert('MANGA AGGIUNTO CON SUCCESSO');
   }
 
   loadNextPage(): void {
