@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
           return true;
         }
         alert(
-          'To access this page you need to be logged in!\nLogin or Register'
+          'Per accedere a questa pagina devi essere loggato, Accedi o Registrati'
         );
         return this.router.createUrlTree(['/login']);
       })

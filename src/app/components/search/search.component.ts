@@ -29,9 +29,7 @@ export class SearchComponent implements OnInit {
     this.myMangaService
       .getMangasByTitle(0, 32, title)
       .subscribe((response: any) => {
-        console.log(response.content);
         this.searchedMangas = response.content;
-        console.log(this.searchedMangas);
       });
   }
 

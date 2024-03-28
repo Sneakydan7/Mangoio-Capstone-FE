@@ -36,6 +36,11 @@ const routes: Route[] = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'manga/:query',
+    component: MangaPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'tracker',
     component: TrackerComponent,
     canActivate: [AuthGuard],
@@ -46,7 +51,7 @@ const routes: Route[] = [
   },
   {
     path: '**',
-    redirectTo: 'about',
+    redirectTo: 'home',
   },
 ];
 

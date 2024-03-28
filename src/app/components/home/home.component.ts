@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MymangaService } from 'src/app/services/mymanga.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { MangaData } from 'src/app/auth/interfaces/manga-data';
@@ -27,7 +27,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private myMangaService: MymangaService,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.page = 0;
     this.size = 6;
@@ -69,8 +70,23 @@ export class HomeComponent implements OnInit {
   }
 
   addMangaToList(id: number): void {
-    this.userService.addMangaToList(id).subscribe();
-    alert('MANGA AGGIUNTO CON SUCCESSO');
+    this.userService.getMyMangas().subscribe((mangaList: any[]) => {
+      if (mangaList.some((manga) => manga.id === id)) {
+        alert('Hai già questo manga nella tua lista!');
+        return;
+      }
+
+      this.userService.addMangaToList(id).subscribe(() => {
+        alert('Manga aggiunto con successo!');
+        setTimeout(() => {
+          this.router.navigate(['/tracker']);
+        }, 300);
+      });
+    });
+  }
+
+  goToInfo(id: number): void {
+    this.router.navigate(['manga', id]);
   }
 
   loadNextPage(): void {

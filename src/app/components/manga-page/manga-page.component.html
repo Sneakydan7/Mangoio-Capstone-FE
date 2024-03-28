@@ -1,15 +1,40 @@
-<div id="gradient"></div>
-<div id="card">
-  <img
-    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43604/profile/profile-512_1.jpg"
-  />
-  <h2>Ondřej Page Bárta</h2>
-  <p>Student of IT in Czech republic.</p>
-  <p>
-    Interested in Web technologies like HTML5, CSS3, JavaScript, PHP, MySQL,
-    etc.
-  </p>
-  <p>Love Codepen.io and respect Chris Coyier.</p>
-  <span class="left bottom">tel: 731 366 ***</span>
-  <span class="right bottom">adress: Czech Republic</span>
+<div class="mt-17">
+  <div id="gradient"></div>
+  <div
+    id="card"
+    class="bg-dark slide-in-fwd-left"
+    [class.slide-out-right]="isClicked"
+  >
+    <div class="p-3">
+      <img src="{{ foundManga.imageUrl }}" class="object-fit-cover" />
+    </div>
+    <h2 class="text-danger">{{ foundManga.title }}</h2>
+
+    <div class="d-flex flex-wrap margins">
+      <div class="text-danger font-small me-3">Generi</div>
+      <p class="pe-1 text-light" *ngFor="let genre of genres">{{ genre }},</p>
+    </div>
+    <div class="d-flex flex-wrap margins">
+      <div class="text-danger font-small me-3">Autori</div>
+      <p class="pe-1 text-light" *ngFor="let author of authors">
+        {{ author }}
+      </p>
+    </div>
+    <div class="d-flex flex-wrap margins">
+      <div class="text-danger font-small me-3">Punteggio</div>
+      <p class="pe-1 text-light">
+        {{ foundManga.score
+        }}<i class="fa-solid fa-star fs-6 ms-2 text-rainbow-animation"></i>
+      </p>
+    </div>
+    <div class="d-flex">
+      <button
+        type="button"
+        class="btn btn-danger ms-auto"
+        (click)="addMangaToList(foundManga.id)"
+      >
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+  </div>
 </div>

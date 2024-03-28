@@ -11,6 +11,7 @@ export class MymangaService {
   private userUrl = 'http://localhost:4201/users';
   private searchUrl = 'http://localhost:4201/mangas/search?title=';
   private findMalId = 'http://localhost:4201/mangas/mal';
+  private malUrl = 'https://api.jikan.moe/v4/manga';
   constructor(private http: HttpClient) {}
 
   getMangas(page: number, size: number): Observable<any> {
@@ -21,11 +22,19 @@ export class MymangaService {
     return this.http.get(`${this.findMalId}/${mangaId}`);
   }
 
+  getMangaById(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
   getMangasByTitle(page: number, size: number, title: any): Observable<any> {
     return this.http.get(`${this.searchUrl}${title}&page=${page}&size=${size}`);
   }
 
   getMangasByScore(page: number, size: number): Observable<any> {
     return this.http.get(`${this.apiUrlScore}?page=${page}&size=${size}`);
+  }
+
+  getMangaFromJikan(id: number): Observable<any> {
+    return this.http.get(`${this.malUrl}/${id}/full`);
   }
 }
