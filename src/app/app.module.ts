@@ -51,7 +51,7 @@ const routes: Route[] = [
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: 'about',
   },
 ];
 

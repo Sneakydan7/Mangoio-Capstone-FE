@@ -10,7 +10,8 @@ import { MymangaData } from 'src/app/auth/interfaces/mymanga-data';
   styleUrls: ['./tracker.component.scss'],
 })
 export class TrackerComponent implements OnInit {
-  myMangas!: any[];
+  myMangas!: MymangaData[];
+  myReadMangas!: MymangaData[];
   myMangaReadVolumes!: any[];
   loggedUser!: any;
   displayMangaName!: string;
@@ -18,6 +19,8 @@ export class TrackerComponent implements OnInit {
   displayMangaImage!: string;
   displayMangaId!: number;
   isMangaSelected: boolean = false;
+  mangaGenres: Map<string, number> = new Map();
+  firstOpenSidebar: boolean = false;
 
   clickedVolumes: number[] = [];
 
@@ -45,17 +48,51 @@ export class TrackerComponent implements OnInit {
       .getMyReadVolumesForManga(mangaId)
       .subscribe((response: any) => {
         this.myMangaReadVolumes = response;
-        console.log(this.myMangaReadVolumes);
       });
   }
 
   setMyMangaReadVolumes(mangaVol: MangaVolume) {
     this.userService.setMyReadVolumesForManga(mangaVol).subscribe();
   }
-
   getMyMangas(): void {
-    this.userService.getMyMangas().subscribe((response) => {
-      this.myMangas = response;
+    this.userService.getMyMangas().subscribe((response: MymangaData[]) => {
+      this.myMangas = [];
+      this.myReadMangas = [];
+
+      response.forEach((manga: MymangaData) => {
+        if (manga.read) {
+          this.myReadMangas.push(manga);
+        } else {
+          this.myMangas.push(manga);
+        }
+      });
+
+      this.myMangas.sort((a: MymangaData, b: MymangaData) => {
+        const titleA = a.title.toUpperCase();
+        const titleB = b.title.toUpperCase();
+        if (titleA < titleB) {
+          return -1;
+        }
+        if (titleA > titleB) {
+          return 1;
+        }
+        return 0;
+      });
+      this.myReadMangas.sort((a: MymangaData, b: MymangaData) => {
+        const titleA = a.title.toUpperCase();
+        const titleB = b.title.toUpperCase();
+        if (titleA < titleB) {
+          return -1;
+        }
+        if (titleA > titleB) {
+          return 1;
+        }
+        return 0;
+      });
+
+      this.mangaGenres = this.countAndRetrieveGenresInMangas(this.myMangas);
+      console.log(this.mangaGenres);
+      console.log(this.myReadMangas);
     });
   }
 
@@ -93,17 +130,17 @@ export class TrackerComponent implements OnInit {
     this.clickedMangaName(manga.title);
 
     this.isMangaSelected = true;
+    this.firstOpenSidebar = true;
     this.clickedVolumes = [];
 
     this.userService
       .getMyReadVolumesForManga(manga.id)
       .subscribe((response: any) => {
         this.myMangaReadVolumes = response;
-        console.log(this.myMangaReadVolumes);
+
         for (let i = 0; i < response.length; i++) {
           const currentVol = response[i];
           this.clickedVolumes.push(currentVol.volNumber);
-          console.log(currentVol);
         }
       });
   }
@@ -134,6 +171,30 @@ export class TrackerComponent implements OnInit {
 
   markVolumeAsRead(mangaId: number, volNumber: number): void {
     this.clickedVolumes.push(volNumber);
-    this.setMyMangaReadVolumes({ mangaId, volNumber });
+    this.userService
+      .setMyReadVolumesForManga({ mangaId, volNumber })
+      .subscribe(() => {
+        this.getMyMangas();
+      });
+  }
+
+  countAndRetrieveGenresInMangas(myMangas: MymangaData[]): Map<string, number> {
+    const genreCounts: Map<string, number> = new Map();
+
+    myMangas.forEach((manga) => {
+      const genres = manga.genres
+        .replace(/[\[\]']+/g, '')
+        .split(',')
+        .map((genre: string) => genre.trim());
+      genres.forEach((genre) => {
+        if (genreCounts.has(genre)) {
+          genreCounts.set(genre, genreCounts.get(genre)! + 1);
+        } else {
+          genreCounts.set(genre, 1);
+        }
+      });
+    });
+
+    return genreCounts;
   }
 }

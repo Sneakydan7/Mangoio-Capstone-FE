@@ -12,4 +12,5 @@ export interface MymangaData {
   serializations: string;
   imageUrl: string;
   id: number;
+  read: boolean;
 }

@@ -62,7 +62,7 @@ export class MangaPageComponent implements OnInit {
         alert('Manga aggiunto con successo!');
         setTimeout(() => {
           this.router.navigate(['/tracker']);
-        }, 800);
+        }, 900);
       });
     });
   }

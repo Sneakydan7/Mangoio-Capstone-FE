@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MymangaService } from 'src/app/services/mymanga.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -15,7 +15,8 @@ export class SearchComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private myMangaService: MymangaService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +35,21 @@ export class SearchComponent implements OnInit {
   }
 
   addMangaToList(id: number): void {
-    this.userService.addMangaToList(id).subscribe();
-    alert('MANGA AGGIUNTO CON SUCCESSO');
+    this.userService.getMyMangas().subscribe((mangaList: any[]) => {
+      if (mangaList.some((manga) => manga.id === id)) {
+        alert('Hai già questo manga nella tua lista!');
+        return;
+      }
+
+      this.userService.addMangaToList(id).subscribe(() => {
+        alert('Manga aggiunto con successo!');
+        setTimeout(() => {
+          this.router.navigate(['/tracker']);
+        }, 800);
+      });
+    });
+  }
+  goToInfo(id: number): void {
+    this.router.navigate(['manga', id]);
   }
 }
