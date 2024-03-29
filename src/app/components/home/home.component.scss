@@ -66,6 +66,13 @@
 .card__button {
   padding: 2px;
 }
+.font-small {
+  font-family: "Barlow Condensed";
+  font-weight: 400;
+  font-size: 17px;
+  font-style: italic;
+  font-optical-sizing: auto;
+}
 
 @media (any-hover: hover) and (any-pointer: fine) {
   .card__content {
@@ -174,4 +181,8 @@
 }
 .mango-color {
   background-color: #f1bf38;
+}
+.bg-shelf {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #48494b36;
 }

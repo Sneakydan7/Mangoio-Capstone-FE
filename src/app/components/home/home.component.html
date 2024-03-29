@@ -1,19 +1,20 @@
-<div class="welcome-back d-flex justify-content-center">
+<div class="welcome-back d-flex justify-content-center flex-column p-3">
   <h1 class="text-light font-jap p-4">
-    おかえり<span class="font-jap text-danger ms-2" style="font-style: italic"
-      >!</span
+    おかえり<span class="text-danger">*</span
+    ><span class="font-small text-danger ms-2" style="font-style: italic"
+      >(bentornato)</span
     >
   </h1>
 </div>
 
 <div>
   <h1 class="font-logo text-light gradient-bg ps-4 p-2">I più votati</h1>
-  <div class="row my-5">
+  <div class="row my-5 bg-shelf">
     <div
       *ngFor="let manga of mangasScore"
       class="col-sm-4 col-md-2 d-flex justify-content-around"
     >
-      <article class="card mt-4">
+      <article class="card my-4">
         <img
           class="card__background"
           src="{{ manga.imageUrl }}"
@@ -80,12 +81,12 @@
 
 <div class="mt-5">
   <h1 class="font-logo text-light gradient-bg ps-4 p-2">Scelti per te</h1>
-  <div class="row my-5">
+  <div class="row my-5 bg-shelf">
     <div
       *ngFor="let manga of mangas"
       class="col-sm-4 col-md-2 d-flex justify-content-around"
     >
-      <article class="card mt-4">
+      <article class="card my-4">
         <img
           class="card__background"
           src="{{ manga.imageUrl }}"
@@ -146,12 +147,12 @@
   <h1 class="font-logo text-light gradient-bg ps-4 p-2">
     Popolari questa settimana
   </h1>
-  <div class="row my-5">
+  <div class="row my-5 bg-shelf">
     <div
       *ngFor="let manga of mangas"
       class="col-sm-4 col-md-2 d-flex justify-content-around"
     >
-      <article class="card mt-4">
+      <article class="card my-4">
         <img
           class="card__background"
           src="{{ manga.imageUrl }}"

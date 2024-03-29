@@ -13,15 +13,16 @@ export class TrackerComponent implements OnInit {
   myMangas!: MymangaData[];
   myReadMangas!: MymangaData[];
   myMangaReadVolumes!: any[];
+  mangaGenres: Map<string, number> = new Map();
+
   loggedUser!: any;
   displayMangaName!: string;
   displayMangaVolumes!: number;
   displayMangaImage!: string;
   displayMangaId!: number;
-  isMangaSelected: boolean = false;
-  mangaGenres: Map<string, number> = new Map();
-  firstOpenSidebar: boolean = false;
 
+  isMangaSelected: boolean = false;
+  firstOpenSidebar: boolean = false;
   clickedVolumes: number[] = [];
 
   imagePath: string = '../../../assets/images/PngItem_635378.png';

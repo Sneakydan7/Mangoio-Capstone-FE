@@ -306,6 +306,14 @@ footer a:focus {
   background: -webkit-linear-gradient(to right, #c55a82, #ffdf80);
   background: linear-gradient(to right, #c55a82, #ffdf80);
 }
+.bg-whatsapp {
+  background-image: url(../../../assets/images/walitebg.png);
+  background-blend-mode: darken;
+  background-size: cover;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 
 .text-rainbow-animation {
   background-image: linear-gradient(
@@ -338,8 +346,8 @@ footer a:focus {
 }
 
 .bubble {
-  --r: 25px; /* the radius */
-  --t: 30px; /* the size of the tail */
+  --r: 25px;
+  --t: 30px;
 
   max-width: 300px;
   padding: calc(2 * var(--r) / 3);

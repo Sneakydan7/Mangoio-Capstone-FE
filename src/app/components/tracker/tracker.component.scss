@@ -137,6 +137,12 @@
   font-size: 30px;
   font-style: italic;
 }
+.font-small {
+  font-family: "Barlow Condensed";
+  font-weight: 400;
+  font-size: 17px;
+  font-style: italic;
+}
 .font-welcome {
   font-family: "Barlow Condensed";
   font-weight: 700;
@@ -170,7 +176,15 @@
 }
 
 .gradient-bg {
-  background: rgb(220, 53, 69);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(223, 69, 84, 0.8) 25%,
+    rgba(220, 53, 69, 1) 50%,
+    rgba(225, 81, 95, 0.7979924391631652) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 .lighter-dark {
