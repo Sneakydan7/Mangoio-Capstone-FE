@@ -21,6 +21,7 @@ export class TrackerComponent implements OnInit {
   displayMangaImage!: string;
   displayMangaId!: number;
 
+  pageFirstLoad: boolean = false;
   isMangaSelected: boolean = false;
   firstOpenSidebar: boolean = false;
   clickedVolumes: number[] = [];
@@ -37,6 +38,9 @@ export class TrackerComponent implements OnInit {
   ngOnInit(): void {
     this.getMe();
     this.getMyMangas();
+    setTimeout(() => {
+      this.pageFirstLoad = true;
+    }, 200);
   }
   getMe() {
     this.userService.getMe().subscribe((response: any) => {

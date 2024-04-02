@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   response!: any[];
   mangas!: any[];
   mangasScore!: any[];
+  mangaGenres: Map<string, number> = new Map();
   admin = false;
   page!: number;
   pageScore!: number;

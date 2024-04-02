@@ -6,20 +6,82 @@
     >
   </h1>
 </div>
+<div class="d-flex justify-content-center p-5 indent">
+  <div class="container-card col-4 mb-5">
+    <div class="content w-100">
+      <div class="d-flex contentspace w-100">
+        <img src="{{ mangasScore[0].imageUrl }}" alt="" />
+
+        <div class="d-flex flex-column titlespace">
+          <div class="gradient-bg2" style="border-top-right-radius: 25px">
+            <h1
+              class="text-center feature text-truncate my-3 text-rainbow-animation"
+            >
+              {{ mangasScore[0].title }}
+            </h1>
+          </div>
+          <p class="text-center text-light fs-p">
+            Numero <span class="text-danger">#1</span> in classifica settimanale
+            con <span class="text-danger">1704</span> voti
+          </p>
+          <div class="d-flex mt-auto ms-3">
+            <button
+              type="button"
+              class="btn mango-color pill-button fs-button"
+              (click)="goToInfo(mangasScore[0].id)"
+            >
+              <i class="fa-solid fa-info"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger pill-button ms-3"
+              (click)="addMangaToList(mangasScore[0].id)"
+            >
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flap"></div>
+    <div class="d-flex">
+      <div class="font-logo text-light">
+        MANGA DELLA <span class="text-danger">SETTIMANA</span>
+      </div>
+      <div class="fire">
+        <div class="fire-left">
+          <div class="main-fire"></div>
+          <div class="particle-fire"></div>
+        </div>
+        <div class="fire-main">
+          <div class="main-fire"></div>
+          <div class="particle-fire"></div>
+        </div>
+        <div class="fire-right">
+          <div class="main-fire"></div>
+          <div class="particle-fire"></div>
+        </div>
+        <div class="fire-bottom">
+          <div class="main-fire"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div>
-  <h1 class="font-logo text-light gradient-bg ps-4 p-2">I più votati</h1>
+  <h1 class="font-logo text-light gradient-bg ps-4 p-2">I PIÙ VOTATI</h1>
   <div class="row my-5 bg-shelf">
     <div
       *ngFor="let manga of mangasScore"
-      class="col-sm-4 col-md-2 d-flex justify-content-around"
+      class="col-sm-4 col-md-2 d-flex justify-content-around scale-in-center"
     >
       <article class="card my-4">
         <img
           class="card__background"
           src="{{ manga.imageUrl }}"
-          alt="Photo of
-        Cartagena's cathedral at the background and some colonial style houses"
+          alt=""
           width="100%"
           height="100%"
         />
@@ -58,7 +120,7 @@
     </div>
   </div>
 </div>
-<div class="d-flex mt-3 ms-3">
+<div class="d-flex mt-3 ms-3 justify-content-center">
   <div class="ms-2" *ngIf="pageScore != 0">
     <button
       (click)="loadPreviousPageScore()"
@@ -80,7 +142,7 @@
 </div>
 
 <div class="mt-5">
-  <h1 class="font-logo text-light gradient-bg ps-4 p-2">Scelti per te</h1>
+  <h1 class="font-logo text-light gradient-bg ps-4 p-2">SCELTI PER TE</h1>
   <div class="row my-5 bg-shelf">
     <div
       *ngFor="let manga of mangas"
@@ -90,8 +152,7 @@
         <img
           class="card__background"
           src="{{ manga.imageUrl }}"
-          alt="Photo of
-        Cartagena's cathedral at the background and some colonial style houses"
+          alt=""
           width="100%"
           height="100%"
         />
@@ -122,7 +183,7 @@
     </div>
   </div>
 </div>
-<div class="d-flex mt-3 ms-3">
+<div class="d-flex mt-3 ms-3 justify-content-center">
   <div class="ms-2" *ngIf="page != 0">
     <button
       (click)="loadPreviousPage()"
@@ -144,9 +205,7 @@
 </div>
 
 <div class="mt-5">
-  <h1 class="font-logo text-light gradient-bg ps-4 p-2">
-    Popolari questa settimana
-  </h1>
+  <h1 class="font-logo text-light gradient-bg ps-4 p-2">I PIÙ POPOLARI</h1>
   <div class="row my-5 bg-shelf">
     <div
       *ngFor="let manga of mangas"
@@ -156,8 +215,7 @@
         <img
           class="card__background"
           src="{{ manga.imageUrl }}"
-          alt="Photo of
-        Cartagena's cathedral at the background and some colonial style houses"
+          alt=""
           width="100%"
           height="100%"
         />
@@ -188,7 +246,7 @@
     </div>
   </div>
 </div>
-<div class="d-flex mt-3 ms-3 mb-5">
+<div class="d-flex mt-3 ms-3 mb-5 justify-content-center">
   <div class="ms-2" *ngIf="page != 0">
     <button
       (click)="loadPreviousPage()"

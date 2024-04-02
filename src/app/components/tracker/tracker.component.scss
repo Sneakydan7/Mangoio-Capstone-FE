@@ -35,8 +35,8 @@
   padding: 12% 1.25rem 1.875rem;
   background: linear-gradient(
     180deg,
-    hsla(0, 0%, 0%, 0) 0%,
-    hsla(0, 0%, 0%, 0.3) 10%,
+    hsla(0, 0%, 0%, 0.285) 0%,
+    hsla(0, 0%, 0%, 0.708) 10%,
     hsl(0, 0%, 0%) 100%
   );
 }
@@ -137,6 +137,11 @@
   font-size: 30px;
   font-style: italic;
 }
+.font-crickets {
+  color: #636363ba;
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
 .font-small {
   font-family: "Barlow Condensed";
   font-weight: 400;
@@ -209,6 +214,36 @@
     both;
   animation: slide-out-right 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
+.scale-in-center {
+  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-in-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
 @-webkit-keyframes slide-out-right {
   0% {
@@ -259,11 +294,11 @@
     opacity: 1;
   }
 }
-.sidebar {
+.sidebar-custom {
   position: fixed;
-  top: 72px;
-  right: 0;
-  height: calc(100vh - 100px);
+  bottom: 0;
+  height: 300px;
+  width: 100%;
   overflow-y: auto;
 }
 
@@ -291,4 +326,21 @@
   transform: translate(-50%, -50%);
   color: greenyellow;
   font-size: 24px;
+}
+.mask-gray {
+  filter: grayscale(100%);
+}
+.rounded-999 {
+  border-radius: 9999px;
+}
+
+@media screen and (min-width: 852px) {
+  .sidebar-custom {
+    position: fixed;
+    top: 72px;
+    right: 0;
+    width: 400px;
+    height: 100vh;
+    overflow-y: auto;
+  }
 }

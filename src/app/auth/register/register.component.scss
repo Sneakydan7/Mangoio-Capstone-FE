@@ -118,3 +118,8 @@ h1:before {
     mask-position: 400px 0px;
   }
 }
+@media screen and (max-width: 500px) {
+  h1:before {
+    margin-left: -120px;
+  }
+}

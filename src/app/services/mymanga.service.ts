@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
+import { MymangaData } from '../auth/interfaces/mymanga-data';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,6 +13,7 @@ export class MymangaService {
   private searchUrl = 'http://localhost:4201/mangas/search?title=';
   private findMalId = 'http://localhost:4201/mangas/mal';
   private malUrl = 'https://api.jikan.moe/v4/manga';
+
   constructor(private http: HttpClient) {}
 
   getMangas(page: number, size: number): Observable<any> {
@@ -36,5 +38,25 @@ export class MymangaService {
 
   getMangaFromJikan(id: number): Observable<any> {
     return this.http.get(`${this.malUrl}/${id}/full`);
+  }
+
+  countAndRetrieveGenresInMangas(myMangas: MymangaData[]): Map<string, number> {
+    const genreCounts: Map<string, number> = new Map();
+
+    myMangas.forEach((manga) => {
+      const genres = manga.genres
+        .replace(/[\[\]']+/g, '')
+        .split(',')
+        .map((genre: string) => genre.trim());
+      genres.forEach((genre) => {
+        if (genreCounts.has(genre)) {
+          genreCounts.set(genre, genreCounts.get(genre)! + 1);
+        } else {
+          genreCounts.set(genre, 1);
+        }
+      });
+    });
+
+    return genreCounts;
   }
 }

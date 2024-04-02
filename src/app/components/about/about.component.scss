@@ -276,7 +276,8 @@ footer a:focus {
   font-family: "Barlow Condensed";
   font-weight: 700;
   font-style: italic;
-  font-size: 100px;
+  font-optical-sizing: auto;
+  font-size: 3rem;
 }
 
 .font-barlow {
@@ -285,7 +286,6 @@ footer a:focus {
 }
 .mango-color {
   color: #f1bf38;
-  font-size: 100px;
 }
 .centered-image {
   position: absolute;
@@ -334,13 +334,6 @@ footer a:focus {
   }
 }
 
-.frosted-glass {
-  backdrop-filter: blur(20px);
-
-  border-radius: 10px;
-  margin-bottom: 50px;
-}
-
 .border-10px {
   border-radius: 10px;
 }
@@ -349,7 +342,7 @@ footer a:focus {
   --r: 25px;
   --t: 30px;
 
-  max-width: 300px;
+  max-width: 1000px;
   padding: calc(2 * var(--r) / 3);
   -webkit-mask: radial-gradient(var(--t) at var(--_d) 0, #0000 98%, #000 102%)
       var(--_d) 100% / calc(100% - var(--r)) var(--t) no-repeat,
@@ -360,6 +353,7 @@ footer a:focus {
   background: linear-gradient(135deg, #fe6d00, #1384c5) border-box;
   color: #fff;
 }
+
 .left {
   --_d: 0%;
   border-left: var(--t) solid #0000;
